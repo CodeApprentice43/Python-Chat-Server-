@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e4e4e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #18181b;
+            border-bottom: 1px solid #27272a;
+            padding: 1rem 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fafafa;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #10b981;
+            color: white;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #09090b;
+            border: 1px solid #27272a;
+            border-radius: 0.375rem;
+        }
+
+        .info-label {
+            color: #a1a1aa;
+            font-size: 0.875rem;
+        }
+
+        .info-value {
+            color: #fafafa;
+            font-weight: 500;
+        }
+
+        .footer {
+            border-top: 1px solid #27272a;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            color: #71717a;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Chat Server</h1>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2>Server Status</h2>
+            <span class="status">Online</span>
+            <div style="margin-top: 1.5rem;">
+                <a href="/chat.html" style="display: inline-block; padding: 0.75rem 1.5rem; background: #3b82f6; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: 600; transition: background 0.2s;">
+                    Open Chat →
+                </a>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">API Version</span>
+                    <span class="info-value">1.0.0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Python Version</span>
+                    <span class="info-value">3.x</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">WebSocket Support</span>
+                    <span class="info-value">Enabled</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Available Endpoints</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">POST /register</span>
+                    <span class="info-value">User Registration</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">POST /login</span>
+                    <span class="info-value">User Login</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">POST /logout</span>
+                    <span class="info-value">User Logout</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">GET /chat-messages</span>
+                    <span class="info-value">Get Messages</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">POST /chat-messages</span>
+                    <span class="info-value">Post Message</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">DELETE /chat-messages/{id}</span>
+                    <span class="info-value">Delete Message</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">POST /upload-file</span>
+                    <span class="info-value">File Upload</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">GET /uploads/{filename}</span>
+                    <span class="info-value">Get Upload</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">WS /websocket</span>
+                    <span class="info-value">WebSocket Connection</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Built with Python | Modern Chat Server
+    </div>
+</body>
+</html>

@@ -87,30 +87,6 @@ class Request:
         
 
 if __name__ == "__main__":
-      # Test 1: Query params
-      req1 = Request(b'GET /messages?limit=10&offset=5 HTTP/1.1\r\n\r\n')
-      print("✓ Query params:", req1.query_params)
-      assert req1.query_params == {"limit": "10", "offset": "5"}
-
-      # Test 2: Cookies with quotes
-      req2 = Request(b'GET / HTTP/1.1\r\nCookie: name="nafis"; visits=3\r\n\r\n')
-      print("✓ Cookies:", req2.cookies)
-      assert req2.cookies == {"name": "nafis", "visits": "3"}
-
-      # Test 3: JSON body
-      req3 = Request(b'POST / HTTP/1.1\r\n\r\n{"username": "test"}')
-      print("✓ JSON:", req3.json())
-      assert req3.json() == {"username": "test"}
-
-      # Test 4: Form data
-      req4 = Request(b'POST / HTTP/1.1\r\n\r\nusername=nafis&password=test')
-      print("✓ Form data:", req4.form_data())
-      assert req4.form_data() == {"username": "nafis", "password": "test"}
-
-      # Test 5: Case-insensitive headers
-      req5 = Request(b'GET / HTTP/1.1\r\nContent-Type: application/json\r\n\r\n')
-      print("✓ Header lookup:", req5.get_header("content-type"))
-      assert req5.get_header("content-type") == "application/json"
-
-      print("\n✅ All tests passed!")
-
+    multipart_request = b'''POST /form-path HTTP/1.1\r\nHost: localhost:8080\r\nContent-Type: multipart/form-data; boundary=---------------------------123456789012345678901234567890\r\nContent-Length: <length>\r\n\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="text_field1"\r\n\r\nText data for field 1\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="text_field2"\r\n\r\nText data for field 2\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="file_field1"; filename="example.txt"\r\nContent-Type: text/plain\r\n\r\nContents of example.txt file...\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="image_field1"; filename="image1.jpg"\r\nContent-Type: image/jpeg\r\n\r\n<JPEG binary data>\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="text_field3"\r\n\r\nText data for field 3\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="file_field2"; filename="example2.txt"\r\nContent-Type: text/plain\r\n\r\nContents of example2.txt file...\r\n-----------------------------123456789012345678901234567890\r\nContent-Disposition: form-data; name="image_field2"; filename="image2.jpg"\r\nContent-Type: image/jpeg\r\n\r\n<JPEG binary data>\r\n-----------------------------123456789012345678901234567890--\r\n'''
+    print("Body:", Request(multipart_request).body)
+          

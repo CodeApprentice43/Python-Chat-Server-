@@ -53,19 +53,22 @@ def parse_part(part):
 
 
     
-
-   
-
-
-
 def parse_multipart(request: Request):
 
     content_type = request.get_header("Content-Type")
+    print(f"Content-Type: {content_type}")
+
     boundary_index = content_type.find("boundary=")
     boundary = content_type[boundary_index+len("boundary="):]
+    print(f"Boundary extracted: '{boundary}'")
+
     delimiter = b"--" + boundary.encode()
+    print(f"Delimiter: {delimiter[:50]}")
+    print(f"Body length: {len(request.body)}")
+    print(f"Body start: {request.body[:200]}")
 
     parts_data = request.body.split(delimiter)
+    print(f"Split into {len(parts_data)} parts")
 
     parts = []
 

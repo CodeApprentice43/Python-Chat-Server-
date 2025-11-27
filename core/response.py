@@ -92,6 +92,7 @@ class Response:
           self.set_header("Content-Type", "application/json; charset=utf-8")
           return self
 
+    #preset responses
       @classmethod
       def ok(cls, body: bytes = b""):
           return cls(200, body)
